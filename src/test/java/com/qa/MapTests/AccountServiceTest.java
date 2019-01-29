@@ -84,6 +84,20 @@ public class AccountServiceTest {
 	}
 	
 	@Test
+	public void updateAccount() {
+		addAccountTest();
+		Account newaccount = new Account("Joe", "Bloggs", 1L);
+		String accountjson = jsonutil.getJSONForObject(newaccount);
+		assertEquals("Success" , myrepo.createAccount(accountjson));
+		Account[] accounts = jsonutil.getObjectForJSON(myrepo.getAllAccounts(), Account[].class);
+		assertEquals("Joe" , accounts[0].getFirstName());
+		assertEquals("Bloggs" , accounts[0].getLastName());
+		long testnumber = accounts[0].getAccountNumber();
+		assertEquals(1L , testnumber);
+		
+	}
+	
+	@Test
 	public void accountConversionToJSONTestWithEmptyMap() {
 	
 	}
