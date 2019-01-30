@@ -9,6 +9,8 @@ public class AccountMapRepository implements AccountRepository {
 
 	Map<Long, Account> account = new HashMap<>();
 	JSONUtil jsonutil = new JSONUtil();
+	String success = "Success";
+	String failure = "Failure";
 
 	public String getAllAccounts() {
 		return jsonutil.getJSONForObject(account.values());
@@ -19,15 +21,15 @@ public class AccountMapRepository implements AccountRepository {
 		Account newAccount;
 		newAccount = jsonutil.getObjectForJSON(account, Account.class);
 		this.account.put(newAccount.getAccountNumber(), newAccount);
-		return "Success";
+		return success;
 	}
 
 	public String deleteAccount(Long id) {
-		if(account.containsKey(id)) {
+		if (account.containsKey(id)) {
 			account.remove(id);
-			return "Success";
+			return success;
 		} else {
-			return "Failure";
+			return failure;
 		}
 	}
 
@@ -36,10 +38,22 @@ public class AccountMapRepository implements AccountRepository {
 			Account newAccount = null;
 			newAccount = jsonutil.getObjectForJSON(account, Account.class);
 			this.account.put(newAccount.getAccountNumber(), newAccount);
-			return "Success";
+			return success;
 
-		} else
-			return "Failure";
+		} else {
+			return failure;
+		}
 	}
 
+	public long compareFirstNames(String firstName) {
+		int count = 0;
+		
+		for (long key : this.account.keySet()) {
+			if(this.account.get(key).getFirstName().equals(firstName)) {
+				count++;
+			}
+		}
+		return count;
+
+	}
 }
