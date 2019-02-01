@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.qa.Utils.JSONUtil;
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.repository.AccountMapRepository;
-import com.qa.persistence.repository.JSONUtil;
 
 public class AccountServiceTest {
 
@@ -105,7 +105,8 @@ public class AccountServiceTest {
 	public void accountConversionToJSONTest() {
 		Account testaccount = new Account("Ben", "Leadbeater", 1L);
 		String accountjson = jsonutil.getJSONForObject(testaccount);
-		assertEquals("{\"firstName\":\"Ben\",\"lastName\":\"Leadbeater\",\"accountNumber\":1}", accountjson);
+		System.out.println(accountjson);
+		assertEquals("{\"accountNumber\":1,\"firstName\":\"Ben\",\"lastName\":\"Leadbeater\"}", accountjson);
 	}
 
 	@Test

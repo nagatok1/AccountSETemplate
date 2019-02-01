@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Account {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
+	private Long id;
 	
 	private Long accountNumber;
 	private String firstName;
@@ -24,6 +24,10 @@ public class Account {
 		this.firstName =  firstName;
 		this.lastName = lastName;
 		this.accountNumber = accountNumber;
+	}
+	
+	public Account() {
+		
 	}
 
 	public String getFirstName() {

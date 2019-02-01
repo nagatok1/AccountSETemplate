@@ -3,9 +3,12 @@ package com.qa.persistence.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+
+import com.qa.Utils.JSONUtil;
 import com.qa.persistence.domain.Account;
 
-
+@Alternative
 public class AccountMapRepository implements AccountRepository {
 
 	Map<Long, Account> account = new HashMap<>();
@@ -56,5 +59,10 @@ public class AccountMapRepository implements AccountRepository {
 		}
 		return count;
 
+	}
+
+	@Override
+	public String findAccountById(Long id) {
+		return null;
 	}
 }
